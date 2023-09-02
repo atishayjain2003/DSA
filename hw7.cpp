@@ -6,23 +6,22 @@ int main()
     int i,number,c=1;
     cout<<"Enter the number"<<endl;
     cin>>number;
-    for(i=2; i<=((number/2)+1); i++)
+    for(i=2; i<=((number+1)/2); i++)
     {
         if(number%i==0)
         {
             break;
+            //cout<<"Not a prime"<<endl;
             c=0;
-        }   
+        }
     }
-    if(c==1)
+    if(c==0)
     {
-        cout<<"Prime number"<<endl;
+        cout<<"Not a prime"<<endl;
     }
     else
     {
-        cout<<"Not a Prime number"<<endl;
+        cout<<"Prime"<<endl;
     }
-    
-    
-
+  
 }
