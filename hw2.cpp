@@ -14,5 +14,8 @@ int main()
     cout<<"\n";
     perimeter=a+b+c;
     cout<<"The perimeter is"<<endl<<perimeter;
+    cout<<endl;
+    cout<<"Press Enter to continue";
+
     
 }
