@@ -16,7 +16,7 @@ int main()
             cout<<" ";
         }
         // defining stars
-        for(column=0; column<n-row; column++)\
+        for(column=0; column<n-row; column++)
         {
             cout<<"* ";
         }
