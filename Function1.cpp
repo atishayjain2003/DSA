@@ -13,5 +13,8 @@ void fact(int n)
 }
 int main()
 {
-    fact(5);
+    int x;
+    cout<<"Enter number whose factorial is to be calculated";
+    cin>>x;
+    fact(x);
 }
