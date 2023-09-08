@@ -8,6 +8,7 @@ void prime(int number)
         if(number%i==0)
         {
             counter=1;
+            break;
         }
     }
 
