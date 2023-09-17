@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-int main()
+void find()
 {
     int rows, columns, i, j;
     int array[100][100];
