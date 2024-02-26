@@ -32,6 +32,8 @@ int main()
     temp=head;
     cout<<"The linked list after deletion is "<< endl;
     head=head->next;
+    temp->next=NULL;
+    delete temp;
     temp=head;
     tail=head;
     while(temp!=NULL)

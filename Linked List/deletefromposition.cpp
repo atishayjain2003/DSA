@@ -10,37 +10,50 @@ class node
         this->data=data;
         this->next=NULL;
     }
-
 };
 int main()
 {
+    int count=1;
+    int position=3;
+    //assuming there exists atleast one node
     node* first=new node(10);
     node* second=new node(20);
     node* third=new node(30);
     node* fourth=new node(40);
     node* head=first;
-    node* temp=first;
-    node* tail=first;
+    node* temp=head;
+    node* tail=head;
+    node* current=head;
+    node* previous=head;
+    node* currentnext=head;
     first->next=second;
     second->next=third;
     third->next=fourth;
-    cout<<"linked list before deletion is "<< endl;
+    //delete at position 3
+
+    for(int i=1; i<position; i++)
+    {
+        temp=temp->next;
+    }
+    current=temp;
+    
+    temp=head;
+    while(temp->next!=current)
+    {
+        temp=temp->next;
+    }
+    previous=temp;
+    temp=head;
+    previous->next=current->next;
+    current->next=NULL;
+    delete current;
     while(temp!=NULL)
     {
         cout<<temp->data<<" ";
         temp=temp->next;
-        tail=tail->next;
     }
-    temp=head;
-    cout<<"Linked list after deletion is "<< endl;
-    while(temp->next!=tail)
-    {
-        cout<<temp->data<<" ";
-        temp=temp->next;
-    }
-    temp->next=NULL;
-    tail=temp;
-    cout<<endl<< "the next of tail is "<< endl;
-    cout<<tail->next;
-    cout<< endl<<"The data of tail is "<<tail->data;
+
+
+    
+
 }
