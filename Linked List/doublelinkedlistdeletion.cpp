@@ -33,11 +33,41 @@ int main()
     delete temp;
     head->prev=NULL;
     temp=head;
-    while(temp!=NULL)
+   /* while(temp!=NULL)
     {
         cout<<temp->data<<" ";
         temp=temp->next;
     }
+    */
+    
+    node* tail=head;
+    node* previous=head;
+    while(temp->next!=NULL)
+    {
+        temp=temp->next;
+    }
+    tail=temp;
+    temp=head;
+    while(temp->next!=tail)
+    {
+        temp=temp->next;
+    }
+    previous=temp;
+    temp=head;
+    previous->next=NULL;
+    tail->prev=NULL;
+    delete tail;
+    tail=previous;
+    while(temp!=NULL)
+    {
+        cout<<temp->data<<" ";
+        temp=temp->next;
+
+
+    }
+    
+
+
 
 
 }
