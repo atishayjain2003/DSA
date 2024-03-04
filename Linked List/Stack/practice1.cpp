@@ -58,7 +58,7 @@ int main()
    st1.push(2);
    st1.push(45);
    int x=st1.size();
-
+/*
    vector<int>result;
    for(int i=0; i<x; i++)
    {
@@ -77,6 +77,33 @@ int main()
     cout<<st2.top()<<" ";
     st2.pop();
    }
+   */
+  // insert at the bottom of stack 
+
+  for(int i=0; i<x; i++)
+  {
+    st2.push(st1.top());
+    st1.pop();
+  }
+
+  int value;
+  cout<<"Enter value to be pushed to the bottom of stack ";
+  cin>> value;
+  st1.push(value);
+  int y=st2.size();
+  for(int i=0; i<y; i++)
+  {
+    st1.push(st2.top());
+    st2.pop();
+  }
+  int z=st1.size();
+  cout<<"The new stack is "<< endl;
+  for(int i=0; i<z; i++)
+  {
+    cout<<st1.top()<<" ";
+    st1.pop();
+  }
+
 
 
 
