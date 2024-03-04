@@ -21,7 +21,7 @@ int main()
         st.pop();
     }*/
     //string reversal using stack 
-    string name="Atishay";
+    string name="ARORA";
     int x=name.length();
     stack<char>value;
     for(int i=0; i<x; i++)
@@ -36,6 +36,16 @@ int main()
         value.pop();
     }
 
-    cout<<"The reversed string is "<<result;
+    //cout<<"The reversed string is "<<result;
+
+    if(result==name)
+    {
+        cout<<"Palindrome";
+    }
+    else{
+        cout<<"Not a palindrome";
+    }
+
+
     
 }
