@@ -1,10 +1,16 @@
 class Solution {
 public:
-    int findTheWinner(int n, int k) {
-        int a = 0; 
-        for(int i = 1; i<=n; ++i){
-            a = (a + k) % i;
+
+    int solve(int n,int k)
+    {
+        if(n==0)
+        {
+            return 0;
         }
-        return a + 1;
+        return (solve(n-1,k)+k)%n;
+    }
+    int findTheWinner(int n, int k) {
+       int ans=solve(n,k)+1;
+       return ans;
     }
 };
