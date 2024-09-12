@@ -1,31 +1,31 @@
 class Solution {
 public:
     vector<vector<int>> merge(vector<vector<int>>& intervals) {
-        int x=intervals.size();
-        sort(intervals.begin(), intervals.end());
-        vector<vector<int>>ans;
-        for(int i=0; i<x; i++)
-        {
-            int start=intervals[i][0];
-            int end=intervals[i][1];
-            if(!ans.empty() && end<=ans.back()[1])
-            {
-                continue;
-            }
-            for(int j=i+1; j<x; j++)
-            {
-                if(intervals[j][0]<=end)
-                {
-                    end=max(end,intervals[j][1]);
-                }
-                else
-                {
-                    break;
-                }
-            }
-            ans.push_back({start,end});
-        }
-        return ans;
+        int intervalCount = intervals.size();
         
+        if (intervalCount == 0) {
+            return {};
+        }
+
+        // Sort intervals based on the starting time of each interval
+        sort(intervals.begin(), intervals.end());
+
+        vector<vector<int>> mergedIntervals;
+
+        // Start with the first interval
+        mergedIntervals.push_back(intervals[0]);
+
+        for (int i = 1; i < intervalCount; i++) {
+            // If the current interval does not overlap with the last merged interval
+            if (intervals[i][0] > mergedIntervals.back()[1]) {
+                // No overlap, so add the current interval
+                mergedIntervals.push_back(intervals[i]);
+            } else {
+                // There is overlap, so merge the intervals by updating the end time
+                mergedIntervals.back()[1] = max(mergedIntervals.back()[1], intervals[i][1]);
+            }
+        }
+
+        return mergedIntervals;
     }
 };
