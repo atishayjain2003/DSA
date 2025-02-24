@@ -1,18 +1,16 @@
 class Solution {
 public:
-    vector<int> result;  // Declare result as a member variable
-    
-    void preorder(TreeNode* root) {
+    void preorder(TreeNode* root, vector<int>& result) {
         if (root != nullptr) {
-            result.push_back(root->val);  // Add root value to result
-            preorder(root->left);         // Recur on the left subtree
-            preorder(root->right);        // Recur on the right subtree
+            result.push_back(root->val);   
+            preorder(root->left, result); 
+            preorder(root->right, result); 
         }
     }
     
     vector<int> preorderTraversal(TreeNode* root) {
-      
-        preorder(root);
-        return result;
+        vector<int> result;
+        preorder(root, result); 
+        return result;          
     }
 };
