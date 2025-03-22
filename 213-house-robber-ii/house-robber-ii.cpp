@@ -1,32 +1,46 @@
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
 class Solution {
 public:
-    int f(vector<int>& nums)
-    {
-        int n=nums.size();
-        int prev=nums[0];
-        int prev2=0;
-        for(int i=1; i<n; i++)
-        {
-            int take=nums[i];
-            if(i>1) take+=prev2;
-            int nottake=0+prev;
-            int curr=max(take,nottake);
-            prev2=prev;
-            prev=curr;
+    int robHelper(int index, vector<int>& nums, vector<int>& dp) {
+        if (index == 0) {
+            return nums[0];  // Base case: Only one house
         }
-        return prev;
+        if (index < 0) {
+            return 0;  // Base case: No house left to rob
+        }
+        if (dp[index] != -1) {
+            return dp[index];  // Return cached result
+        }
+
+        int pick = nums[index] + robHelper(index - 2, nums, dp);  // Rob current + two steps back
+        int nonPick = robHelper(index - 1, nums, dp);  // Skip current house
+
+        dp[index] = max(pick, nonPick);
+        return dp[index];
     }
-    long long int rob(vector<int>& nums) {
-        int n=nums.size();
-        if(n==1) return nums[0];
-        vector<int>temp1, temp2;
-        for(long long int i=0; i<n; i++)
-        {
-            if(i!=0) temp1.push_back(nums[i]);
-            if(i!=n-1) temp2.push_back(nums[i]);
+
+    int rob(vector<int>& nums) {
+        int n = nums.size();
+        if (n == 1) {
+            return nums[0];  // If only one house, rob it
         }
-        return max(f(temp1), f(temp2));
-       
-        
+
+        vector<int> dp(n, -1);
+
+        // Case 1: Exclude last house (rob from 0 to n-2)
+        vector<int> case1(nums.begin(), nums.end() - 1);
+        fill(dp.begin(), dp.end(), -1);
+        int case1Result = robHelper(case1.size() - 1, case1, dp);
+
+        // Case 2: Exclude first house (rob from 1 to n-1)
+        vector<int> case2(nums.begin() + 1, nums.end());
+        fill(dp.begin(), dp.end(), -1);
+        int case2Result = robHelper(case2.size() - 1, case2, dp);
+
+        return max(case1Result, case2Result);
     }
 };
