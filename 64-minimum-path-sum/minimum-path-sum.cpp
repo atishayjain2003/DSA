@@ -2,26 +2,24 @@ class Solution {
 public:
     int f(int i, int j, vector<vector<int>> &grid, vector<vector<int>> &dp) {
         if (i == 0 && j == 0) return grid[0][0];  // Base case: starting point
-        if (i < 0 || j < 0) return INT_MAX;  // Out of bounds, return a large value
-        
-        if (dp[i][j] != -1) return dp[i][j];  // Return cached result if available
+        if (i < 0 || j < 0) return INT_MAX;  // Out-of-bounds condition
 
-        // Calculate the minimum path sum from left and top
-        int left = f(i, j - 1, grid, dp);
-        int up = f(i - 1, j, grid, dp);
+        if (dp[i][j] != -1) return dp[i][j];  // Return memoized result
 
-        // Store the result and return it
-        return dp[i][j] = grid[i][j] + min(left, up);
+        int up = INT_MAX, left = INT_MAX;  // Initialize variables
+
+        if (i > 0) up = grid[i][j] + f(i - 1, j, grid, dp);
+        if (j > 0) left = grid[i][j] + f(i, j - 1, grid, dp);
+
+        return dp[i][j] = min(up, left);
     }
 
     int minPathSum(vector<vector<int>>& grid) {
-        int m = grid.size();  // Number of rows
-        int n = grid[0].size();  // Number of columns
-        
-        // Initialize dp array with dimensions m x n
-        vector<vector<int>> dp(m, vector<int>(n, -1)); 
+        int m = grid.size();
+        int n = grid[0].size();
 
-        // Start from the bottom-right corner
+        vector<vector<int>> dp(m, vector<int>(n, -1));  // Memoization table
+
         return f(m - 1, n - 1, grid, dp);
     }
 };
