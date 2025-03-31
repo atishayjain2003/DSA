@@ -6,10 +6,16 @@ public:
 
         if (dp[i][j] != -1) return dp[i][j];  // Return memoized result
 
-        int up = INT_MAX, left = INT_MAX;  // Initialize variables
+        int up=INT_MAX,left=INT_MAX;  // Initialize variables
 
-        if (i > 0) up = grid[i][j] + f(i - 1, j, grid, dp);
-        if (j > 0) left = grid[i][j] + f(i, j - 1, grid, dp);
+        if (i > 0) 
+        {
+            up = grid[i][j] + f(i - 1, j, grid, dp);
+        }
+        if (j > 0) 
+        {
+            left = grid[i][j] + f(i, j - 1, grid, dp);
+        }
 
         return dp[i][j] = min(up, left);
     }
