@@ -9,7 +9,7 @@ public:
         for (int i = 0; i < x; i++) {
             if (s[i] != ' ') {
                 reverse += s[i];  // Build the current word
-            } else if (s[i] == ' ' && !reverse.empty()) {
+            } else if (s[i] == ' ' && reverse!="") {
                 st.push(reverse);  // Push the word to stack when space is encountered
                 reverse = "";
             }
